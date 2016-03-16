@@ -1,0 +1,38 @@
+%section#blog.grey
+  .container
+    .row
+      %aside.col-sm-4.col-sm-push-8
+        .widget.search
+          %form{:role => "form"}
+            .input-group
+              %input.form-control{:autocomplete => "off", :placeholder => "Search", :type => "text"}/
+              %span.input-group-btn
+                %button.btn.btn-danger{:type => "button"}
+                  = icon('search')
+        .widget.ads
+          .row
+            - @banners.each do |banner|
+              = link_to(banner.link, class: 'col-sm-12') do
+                = image_tag(banner.image.url(:large), class: 'img-responsive img-rounded')
+
+      .col-sm-8.col-sm-pull-4
+        .blog
+          .blog-item
+            - if @event.images.empty?
+              = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+            - else
+              - @event.images.each do |image|
+                = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+            .blog-content
+              %h3
+                #{@event.title}
+              .entry-meta
+                %span
+                  %i.icon-calendar
+                  #{@event.date.to_date.to_formatted_s(:long)}
+              %p.lead
+                #{@event.subtitle}
+              %p
+                #{@event.info}
+
+              

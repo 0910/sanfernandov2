@@ -1,0 +1,24 @@
+
+%section#title.orange
+  .container
+    .row
+      .col-sm-6
+        %h1 Balances
+      .col-sm-6
+        %ul.breadcrumb.pull-right
+          %li
+            = link_to('Inicio', root_path)
+          %li.active Balances
+          
+%section#faqs.container
+  %ul.faq.unstyled
+    - @balances.each do |balance|
+      %li
+        %span.number 
+          PDF
+        %div
+          = link_to(balance.file.url) do
+            %h4
+              #{balance.name}
+            %p
+              #{balance.date}

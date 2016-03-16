@@ -1,0 +1,323 @@
+!!!
+%html
+	%head
+		%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+			%title
+				Municipio de San Fernando
+			= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+			= javascript_include_tag 'application', 'data-turbolinks-track' => true
+			= csrf_meta_tags
+			= yield(:head)
+
+	%body{:class => "#{controller_name} #{action_name}"}
+
+		%header.navbar.navbar-inverse.wet-asphalt{:role => "banner"}
+			.container
+				.navbar-header
+					%button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+						%span.sr-only Toggle navigation
+						%span.icon-bar
+						%span.icon-bar
+						%span.icon-bar
+					= link_to(root_path, class: 'navbar-brand') do
+						= image_tag('logo.png')
+				.collapse.navbar-collapse
+					%ul.nav.navbar-nav.navbar-right
+						%li.active
+							= link_to('Inicio', root_path)
+						%li
+							= link_to('Noticias', news_index_path)
+						%li
+							= link_to('Agenda', events_path)
+						%li.dropdown.multi-level
+							%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+								La Ciudad
+								= icon('angle-down')
+							%ul.dropdown-menu
+								%li.dropdown-submenu
+									%a(href="#") El Delta
+									%ul.dropdown-menu
+										%li
+											= link_to 'Clima y suelo', page_path(:id => 'climaysuelo')
+										%li
+											= link_to 'Curiosidades del Delta', page_path(:id => 'curiosidades-del-delta')
+										%li
+											= link_to 'Flora y fauna', page_path(:id => 'flora-y-fauna')
+										%li
+											= link_to 'Producción sustentable', page_path(:id => 'produccion-sustentable')
+										%li
+											= link_to 'Reserva de biosfera', page_path(:id => 'reserva-de-biosfera')
+										%li
+											= link_to 'Sección Islas del Delta', page_path(:id => 'islas-del-delta')
+								%li.dropdown-submenu
+									%a(href="#") Náutica
+									%ul.dropdown-menu
+										%li
+											= link_to 'Salón náutico', page_path(:id => 'salon-nautico')
+										%li
+											= link_to 'Consorcio parque náutico', page_path(:id => 'consorcio-parque-nautico')
+										%li
+											= link_to 'Clubes, guarderías y marinas', page_path(:id => 'clubes-y-marinas')
+										%li
+											= link_to 'Industria', page_path(:id => 'industria-nautica')
+								%li.dropdown-submenu
+									%a(href="#") Teléfonos Útiles
+									%ul.dropdown-menu
+										%li
+											= link_to 'Oficinas municipales', page_path(:id => 'oficinas-municipales')
+										%li
+											= link_to 'Salud', page_path(:id => 'salud')
+										%li
+											=link_to 'Seguridad', page_path(:id => 'seguridad')
+										%li
+											=link_to 'Servicios básicos', page_path(:id => 'servicios-basicos')
+								%li.dropdown-submenu
+									%a(href="#") Turismo
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Oficina de Turismo', page_path(:id => 'oficina-de-turismo')
+										%li
+											= link_to 'Accesos y agencias de turismo', page_path(:id => 'accesos-y-agencias')
+										%li
+											= link_to 'Aeropuerto internacional', page_path(:id => 'aeropuerto-internacional')
+										%li 
+											= link_to 'Ecoturismo y pesca deportiva', page_path(:id => 'ecoturismo')
+										%li 
+											= link_to 'Gastronomía', page_path(:id => 'gastronomia')
+										%li 
+											= link_to 'Hospedaje', page_path(:id => 'hospedaje')
+								%li.dropdown-submenu
+									%a(href="#") Sitios de Interés
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Costaneras públicas', page_path(:id => 'costaneras-publicas')
+										%li 
+											= link_to 'Ferias artesanales', page_path(:id => 'ferias-artesanales')
+										%li 
+											= link_to 'Lugares históricos', page_path(:id => 'lugares-historicos')
+										%li 
+											= link_to 'Plazas y parques', page_path(:id => 'plazas-y-parques')
+										%li 
+											= link_to 'Teatros', page_path(:id => 'teatros')
+								%li
+									= link_to 'Estadísticas y censos', page_path(:id => 'estadisticas-y-censos')
+								%li.dropdown-submenu
+									%a(href="#") Historia
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Bandera y escudo', page_path(:id => 'bandera-y-escudo')
+										%li 
+											= link_to 'Localidades del partido', page_path(:id => 'localidades')
+										%li 
+											= link_to 'Orígenes del municipio', page_path(:id => 'origenes')
+										%li 
+											= link_to 'Puntos principales del crecimiento de San Fernando', page_path(:id => 'crecimiento')
+										%li 
+											= link_to 'Rasgos característicos de San Fernando', page_path(:id => 'rasgos-caracteristicos')
+										%li 
+											= link_to 'Datos útiles', page_path(:id => 'datos-utiles')
+										%li 
+											= link_to 'Medio ambiente', page_path(:id => 'medio-ambiente')
+							
+						%li.dropdown.multi-level
+							%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+								Gobierno
+								= icon('angle-down')
+							%ul.dropdown-menu
+								%li.dropdown-submenu
+									%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+										Autoridades
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Secretaría de desarrollo social, medio ambiente y salud pública', page_path(:id => 'secretaria-de-desarrollo-social-medio-ambiente-y-salud-publica')
+										%li 
+											= link_to 'Secretaría de economía', page_path(:id => 'secretaria-de-economia')
+										%li 
+											= link_to 'Secretaría de educación, cultura y contención social', page_path(:id => 'secretaria-de-educacion')
+										%li 
+											= link_to 'Secretaría de gobierno', page_path(:id => 'secretaria-de-gobierno')
+										%li 
+											= link_to 'Secretaría de obras e infraestructura pública', page_path(:id => 'secretaria-de-obras-e-infraestructura-publica')
+										%li 
+											= link_to 'Secretaría de privada y coordinación', page_path(:id => 'secretaria-de-privada-y-coordinacion')
+										%li 
+											= link_to 'Secretaría de protección ciudadana', page_path(:id => 'secretaria-de-proteccion-ciudadana')
+								%li.dropdown-submenu
+									= link_to 'Cultura', page_path(:id => 'cultura')
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Bibliotecas populares', page_path(:id => 'bibliotecas-populares')
+										%li 
+											= link_to 'Centros culturales', page_path(:id => 'centros-culturales')
+										%li 
+											= link_to 'Escuela de formación artística', page_path(:id => 'escuela-artistica')
+										%li 
+											= link_to 'Talleres culturales', page_path(:id => "talleres-culturales")
+								%li.dropdown-submenu
+									= link_to 'Deportes', page_path(:id => 'deportes')
+									%ul.dropdown-menu
+										%li 
+											= link_to 'POLIDEPORTIVO Nº1', page_path(:id => 'cedec1')
+										%li 
+											= link_to 'POLIDEPORTIVO Nº2', page_path(:id => 'cedec2')
+										%li 
+											= link_to 'POLIDEPORTIVO Nº3', page_path(:id => 'cedec3')
+										%li 
+											= link_to 'POLIDEPORTIVO Nº4', page_path(:id => 'cedec4')
+										%li
+											= link_to 'POLIDEPORTIVO Nº5', page_path(:id => 'cedec5')
+										%li 
+											= link_to 'Escuelas deportivas', page_path(:id => 'escuelas-deportivas')
+										%li 
+											= link_to 'Torneos', page_path(:id => 'torneos')
+								%li.dropdown-submenu
+									= link_to 'Economía', page_path(:id => 'economia')
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Básicos en Pesos', page_path(:id => 'basicos-en-pesos')
+										%li 
+											= link_to 'Situación Económico-Financiera', balances_path
+										%li 
+											= link_to 'Ejecución Presupuestaria', page_path(:id => 'ejecucion-presupuestaria')
+										%li 
+											= link_to 'Ingresos Semestrales', page_path(:id => 'ingresos-semestrales')
+								%li.dropdown-submenu
+									= link_to 'Empleo', page_path(:id => 'empleo')
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Empleo joven', page_path(:id => 'empleo-joven')
+								%li
+									= link_to 'Obras públicas', page_path(:id => 'obras-publicas')
+								%li.dropdown-submenu
+									= link_to 'Salud y Desarrollo social', page_path(:id => 'salud-y-desarrollo')
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Materno infantil', page_path(:id => 'materno-infantil')
+										%li 
+											= link_to 'Prevención de adicciones', page_path(:id => 'prevencion-de-adicciones')
+										%li 
+											= link_to 'Programa municipal de VIH/SIDA', page_path(:id => 'programa-vih')
+								%li
+									= link_to 'Seguridad', page_path(:id => 'seguridad')
+								%li.dropdown-submenu
+									%a(href="#") Servicios Educativos
+									%ul.dropdown-menu
+										%li 
+											= link_to 'Colegios y jardines privados en San Fernando', page_path(:id => 'colegios-y-jardines-privados')
+										%li 
+											= link_to 'Colegios y jardines públicos en San Fernando', page_path(:id => 'colegios-y-jardines-publicos')
+										%li 
+											= link_to 'Estudios de nivel medio y superior', page_path(:id => 'estudios-medios')
+										%li 
+											= link_to 'Nivel inicial, primario y secundario', page_path(:id => 'nive-linicial')
+										%li 
+											= link_to 'Unidades de desarrollo infantil', page_path(:id => 'unidades-de-desarrollo')
+										%li 
+											= link_to 'Discapacidad', page_path(:id => 'discapacidad')
+								%li.dropdown-submenu
+									%a(href="#") Atención al Vecino
+									%ul.dropdown-menu
+										%li 
+											= link_to 'OMIC', page_path(:id => 'omic')
+										%li 
+											= link_to 'UFRACC', page_path(:id => 'ufracc')
+						%li.dropdown
+							%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+								Prensa
+								= icon('angle-down')
+							%ul.dropdown-menu
+								%li
+									= link_to 'Prensa', page_path(:id => 'prensa'), :class => 'sections_prensa'
+								%li 
+									= link_to 'Agenda para medios', page_path(:id => 'agenda-medios')
+								%li 
+									= link_to 'Medios locales', page_path(:id => 'medios-locales')
+								%li 
+									= link_to 'Boletines oficiales', page_path(:id => 'boletines-oficiales')
+						%li
+							%a{:href => "contact-us.html"} Contacto
+		= yield
+		%section#bottom.wet-asphalt
+			.container
+				.row
+					.col-md-3.col-sm-6
+						%h4 La Ciudad
+						%div
+							%ul.arrow
+								%li
+									%a{:href => "#"} El Delta
+								%li
+									%a{:href => "#"} Náutica
+								%li
+									%a{:href => "#"} Teléfonos Útiles
+								%li
+									%a{:href => "#"} Turismo
+								%li
+									%a{:href => "#"} Sitios de Interés
+								%li
+									%a{:href => "#"} Historia
+					.col-md-3.col-sm-6
+						%h4 Gobierno
+						%div
+							%ul.arrow
+								%li
+									%a{:href => "#"} Intendencia
+								%li
+									%a{:href => "#"} Cultura
+								%li
+									%a{:href => "#"} Deportes
+								%li
+									%a{:href => "#"} Economía
+								%li
+									%a{:href => "#"} Empleo
+								%li
+									%a{:href => "#"} Obras Públicas
+								%li
+									%a{:href => "#"} Salud y Desarrollo social
+								%li
+									%a{:href => "#"} Servicios educativos
+								%li
+									%a{:href => "#"} Atención al vecino
+
+					.col-md-3.col-sm-6
+						%h4 Municipio
+						%address
+							%strong Municipio de San Fernando
+							%br/
+							Madero 1218
+							%br/
+							San Fernando, CA 94107
+							%br/
+							%abbr{:title => "Phone"} P:
+							(123) 456-7890
+							
+					.col-md-3.col-sm-6
+						%h4 Newsletter
+						%p
+							Subscribite a nuestro newsletter y mantenete informado sobre tu municipio.
+						%form{:role => "form"}
+							.input-group
+								%input.form-control{:autocomplete => "off", :placeholder => "Enter your email", :type => "text"}/
+								%span.input-group-btn
+									%button.btn.btn-warning{:type => "button"} Go!
+						
+
+		%footer#footer.midnight-blue
+			.container
+				.row
+					.col-sm-6
+						© 2016 Municipio de San Fernando. Desarrollo:
+						= link_to('Nueve Diez', 'http://www.nuevediez.com.ar', target: '_blank', title: 'NueveDiez')
+					.col-sm-6
+						%ul.pull-right
+							%li
+								%a{:href => "#"} Home
+							%li
+								%a{:href => "#"} About Us
+							%li
+								%a{:href => "#"} Faq
+							%li
+								%a{:href => "#"} Contact Us
+							%li
+								%a#gototop.gototop{:href => "#"}
+									= icon('chevron-up')

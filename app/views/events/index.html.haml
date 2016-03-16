@@ -1,0 +1,39 @@
+%section#title.orange
+  .container
+    .row
+      .col-sm-6
+        %h1 Agenda
+      .col-sm-6
+        %ul.breadcrumb.pull-right
+          %li
+            = link_to('Inicio', root_path)
+          %li.active Agenda
+
+%section.grey
+  .container
+    .row
+      .blog
+        - @events.each do |event|
+          .col-sm-4
+            .blog-item
+              - if event.images.empty?
+                = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+              - else
+                - event.images.each do |image|
+                  = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+              .blog-content
+                = link_to(event_path(event)) do
+                  %h3
+                    #{event.title}
+                .entry-meta
+                  %span
+                    = icon('calendar')
+                    #{event.date.to_date.to_formatted_s(:long)}
+                %p
+                  #{truncate(event.info, :length => 140)}
+                = link_to(event_path(event), class: 'btn btn-default') do
+                  Leer Más
+                  %i.icon-angle-right
+
+    - if @events.respond_to?(:num_pages)
+      = paginate @events, :window => 3

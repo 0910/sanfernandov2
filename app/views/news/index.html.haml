@@ -1,0 +1,44 @@
+%section#title.orange
+  .container
+    .row
+      .col-sm-6
+        %h1 Noticias
+      .col-sm-6
+        %ul.breadcrumb.pull-right
+          %li
+            = link_to('Inicio', root_path)
+          %li.active Noticias
+
+%section.grey
+  .container
+    .row
+      .blog
+        - @news.each do |news|
+          .col-sm-4
+            .blog-item
+              - if news.images.empty?
+                = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+              - else
+                - news.images.each do |image|
+                  = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+              .blog-content
+                = link_to(news_path(news)) do
+                  %h3
+                    #{news.title}
+                .entry-meta
+                  - if news.category
+                    %span
+                      = icon('folder-close')
+                      %a{:href => "#"}
+                        #{news.category.name}
+                  %span
+                    = icon('calendar')
+                    #{news.date.to_date.to_formatted_s(:long)}
+                %p
+                  #{truncate(news.info, :length => 140)}
+                = link_to(news_path(news), class: 'btn btn-default') do
+                  Leer Más
+                  %i.icon-angle-right
+
+    - if @news.respond_to?(:num_pages)
+      = paginate @news, :window => 3
