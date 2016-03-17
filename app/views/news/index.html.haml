@@ -17,10 +17,11 @@
           .col-sm-4
             .blog-item
               - if news.images.empty?
-                = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                = image_tag(('image-not-available.jpg'), class: 'img-responsive img-blog')
               - else
                 - news.images.each do |image|
-                  = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                  - if image.cover == true
+                    = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
               .blog-content
                 = link_to(news_path(news)) do
                   %h3
