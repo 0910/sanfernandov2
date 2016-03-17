@@ -1,10 +1,10 @@
 %section#main-slider.no-margin
   .carousel.slide.wet-asphalt{"data-ride" => "carousel"}
     %ol.carousel-indicators
-      - @news.each do
+      - @featured_news.each do
         %li{"data-slide-to" => "0", "data-target" => "#main-slider"}
     .carousel-inner
-      - @news.each do |news|
+      - @featured_news.each do |news|
         - if news.images.empty?
           .item{:style => "background-image: url(image-not-available.jpg)"}
             .container
@@ -51,9 +51,9 @@
           .row
             .col-sm-12.blog-item
               - if news.images.empty?
-                = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                = image_tag('image-not-available.jpg'), class: 'img-responsive img-blog')
                 .blog-content
-                  %a{:href => "blog-item.html"}
+                  = link_to (news_path(news)) do
                     %h4 #{news.title}
                   %p
                     #{news.subtitle}
@@ -66,19 +66,20 @@
                       #{news.date.to_date.to_formatted_s(:long)}
               - else
                 - news.images.each do |image|
-                  = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
-                  .blog-content
-                    %a{:href => "blog-item.html"}
-                      %h4 #{news.title}
-                    %p
-                      #{news.subtitle}
-                    .entry-meta
-                      %span
-                        = icon('folder-close')
-                        %a{:href => "#"} #{news.category}
-                      %span
-                        = icon('calendar')
-                        #{news.date.to_date.to_formatted_s(:long)}
+                  - if image.cover == true
+                    = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                    .blog-content
+                      = link_to (news_path(news)) do
+                        %h4 #{news.title}
+                      %p
+                        #{news.subtitle}
+                      .entry-meta
+                        %span
+                          = icon('folder-close')
+                          %a{:href => "#"} #{news.category}
+                        %span
+                          = icon('calendar')
+                          #{news.date.to_date.to_formatted_s(:long)}
         .row
           .col-md-12
             = link_to('Ver todas las Noticias', news_index_path, class: 'col-md-12 btn btn-md btn-success')
@@ -108,17 +109,18 @@
                           #{event.date.to_date.to_formatted_s(:long)}
               - else
                 - event.images.each do |image|
-                  .row
-                    .col-sm-6
-                      = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
-                    .col-sm-6
-                      .blog-content
-                        %a{:href => "blog-item.html"}
-                          %h4 #{event.title}
-                        .entry-meta
-                          %span
-                            = icon('calendar')
-                            #{event.date.to_date.to_formatted_s(:long)}
+                  - if image.cover == true
+                    .row
+                      .col-sm-6
+                        = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                      .col-sm-6
+                        .blog-content
+                          %a{:href => "blog-item.html"}
+                            %h4 #{event.title}
+                          .entry-meta
+                            %span
+                              = icon('calendar')
+                              #{event.date.to_date.to_formatted_s(:long)}
         .row
           .col-md-12
             = link_to('Ver todos los Eventos', events_path, class: 'col-md-12 btn btn-md btn-success')

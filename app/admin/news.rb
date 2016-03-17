@@ -33,6 +33,7 @@ ActiveAdmin.register News do
       row :video
       row :admin_user
       row :status
+      row :featured
       p.images.each do |image|
         row :image do
           image_tag(image.file.url(:thumb))
@@ -49,6 +50,7 @@ ActiveAdmin.register News do
       f.input :subtitle, :require => true
       f.input :info, :require => true
       f.input :status, as: :select2, :collection => ['Published', 'Pending', 'Suspended'], :include_blank => false
+      f.input :featured, as: :select2, :collection => ['Yes', 'No'], :include_blank => false
       f.input :category_id, :as => :select2, :collection => Category.all, :include_blank => false, :require => true      
       f.input :video
     end
