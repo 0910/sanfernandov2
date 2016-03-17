@@ -70,9 +70,9 @@
                     = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
                     .blog-content
                       = link_to (news_path(news)) do
-                        %h4 #{news.title}
+                        %h4 #{truncate(news.title, :length => 50)}
                       %p
-                        #{news.subtitle}
+                        #{truncate(news.subtitle, :length => 140)}
                       .entry-meta
                         %span
                           = icon('folder-close')

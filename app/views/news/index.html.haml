@@ -25,7 +25,7 @@
               .blog-content
                 = link_to(news_path(news)) do
                   %h3
-                    #{news.title}
+                    #{truncate(news.title, :length => 50)}
                 .entry-meta
                   - if news.category
                     %span
@@ -36,7 +36,7 @@
                     = icon('calendar')
                     #{news.date.to_date.to_formatted_s(:long)}
                 %p
-                  #{truncate(news.info, :length => 140)}
+                  #{truncate(news.subtitle, :length => 140)}
                 = link_to(news_path(news), class: 'btn btn-default') do
                   Leer Más
                   %i.icon-angle-right

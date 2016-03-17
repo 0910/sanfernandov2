@@ -17,11 +17,11 @@
           .col-sm-4
             .blog-item
               - if event.images.empty?
-                = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                = image_tag(('image-not-available.jpg'), class: 'img-responsive img-blog')
               - else
                 - event.images.each do |image|
                   - if image.cover == true
-                    = image_tag(('image-not-available.jpg'), class: 'img-responsive img-blog')
+                    = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
               .blog-content
                 = link_to(event_path(event)) do
                   %h3
