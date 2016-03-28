@@ -42,7 +42,7 @@
       .col-sm-4
         .row
           .col-md-12
-            .box.peter-river
+            .box.orange
               %h3
                 %span
                   = icon('newspaper-o icon-sm')
@@ -87,7 +87,7 @@
       .col-sm-4
         .row
           .col-md-12
-            .box.orange
+            .box.turquoise
               %h3
                 %span
                   = icon('calendar icon-sm')
@@ -128,7 +128,7 @@
       .col-sm-4
         .row
           .col-md-12
-            .box.turquoise
+            .box.peter-river
               %h3
                 %span
                   = icon('newspaper-o icon-sm')
@@ -138,7 +138,7 @@
             .col-sm-12.blog-item
               = image_tag(banner.image.url(:large), class: 'img-responsive img-blog')
               .blog-content
-                %a{:href => "blog-item.html"}
+                = link_to(banner.link) do
                   %h4 #{banner.name}
                 %p
                   #{banner.description}
@@ -152,21 +152,21 @@
             = icon('file-text icon-md')
           .media-body
             %h3.media-heading Digesto On-line
-            %p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
+            %p En proceso de modernización.
       .col-md-4.col-sm-6
         .media
           .pull-left
             = icon('credit-card icon-md')
           .media-body
             %h3.media-heading Pago de Tasas
-            %p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
+            %p En proceso de modernización.
       .col-md-4.col-sm-6
         .media
           .pull-left
             = icon('folder-open icon-md')
           .media-body
             %h3.media-heading Expedientes
-            %p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.
+            %p En proceso de modernización.
 :javascript
    $(document).ready(function() {
     $('#main-slider .carousel .carousel-inner > .item:first').addClass('active');

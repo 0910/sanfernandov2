@@ -2,13 +2,13 @@
   .container
     .row
       %aside.col-sm-4.col-sm-push-8
-        .widget.search
-          %form{:role => "form"}
-            .input-group
-              %input.form-control{:autocomplete => "off", :placeholder => "Search", :type => "text"}/
-              %span.input-group-btn
-                %button.btn.btn-danger{:type => "button"}
-                  = icon('search')
+        /.widget.search
+        /  %form{:role => "form"}
+        /    .input-group
+        /      %input.form-control{:autocomplete => "off", :placeholder => "Search", :type => "text"}/
+        /      %span.input-group-btn
+        /        %button.btn.btn-danger{:type => "button"}
+        /          = icon('search')
         .widget.ads
           .row
             - @banners.each do |banner|

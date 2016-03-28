@@ -280,16 +280,24 @@
 									%a{:href => "#"} Atención al vecino
 
 					.col-md-3.col-sm-6
-						%h4 Municipio
+						%h4 Conectate
 						%address
-							%strong Municipio de San Fernando
+							%strong Municipio de San Fernando en:
 							%br/
-							Madero 1218
+							= icon('facebook')
+							SanFerMunicipio
 							%br/
-							San Fernando, CA 94107
+							= icon('youtube')
+							sanfernandomunicipio
 							%br/
-							%abbr{:title => "Phone"} P:
-							(123) 456-7890
+							= icon('twitter')
+							@SanFdoMunicipio
+							%br/
+							= icon('envelope')
+							vecinos@sanfernando.gob.ar
+							%br/
+							= icon('phone')
+							0800-777-6864
 							
 					.col-md-3.col-sm-6
 						%h4 Newsletter
@@ -297,9 +305,9 @@
 							Subscribite a nuestro newsletter y mantenete informado sobre tu municipio.
 						%form{:role => "form"}
 							.input-group
-								%input.form-control{:autocomplete => "off", :placeholder => "Enter your email", :type => "text"}/
+								%input.form-control{:autocomplete => "off", :placeholder => "Ingrese su email", :type => "text"}/
 								%span.input-group-btn
-									%button.btn.btn-warning{:type => "button"} Go!
+									%button.btn.btn-warning{:type => "button"} OK
 						
 
 		%footer#footer.midnight-blue
@@ -311,13 +319,9 @@
 					.col-sm-6
 						%ul.pull-right
 							%li
-								%a{:href => "#"} Home
+								= link_to('Inicio', root_path)
 							%li
-								%a{:href => "#"} About Us
-							%li
-								%a{:href => "#"} Faq
-							%li
-								%a{:href => "#"} Contact Us
+								%a{:href => "#"} Contacto
 							%li
 								%a#gototop.gototop{:href => "#"}
 									= icon('chevron-up')
