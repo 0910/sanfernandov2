@@ -13,7 +13,9 @@
           .row
             - @banners.each do |banner|
               = link_to(banner.link, class: 'col-sm-12') do
-                = image_tag(banner.image.url(:large), class: 'img-responsive img-rounded')
+                = image_tag(banner.image.url(:large), class: 'img-responsive')
+                .item-hover
+                  = icon('plus')
 
         /.widget.categories
         /  %h3 Filtrar por Categorías

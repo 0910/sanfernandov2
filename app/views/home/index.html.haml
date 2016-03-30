@@ -16,7 +16,7 @@
                     .row
                       %p.boxed.animation.animated-item-2 #{news.subtitle}
                     .row  
-                      = link_to('Leer Más', news_path(news), class: 'btn btn-md animation animated-item-3')
+                      = link_to('Leer Más', news_path(news), class: 'btn btn-lg animation animated-item-3')
         - else
           - news.images.each do |image|
             - if image.cover == true
@@ -36,112 +36,133 @@
     = icon('angle-left')
   %a.next.hidden-xs{"data-slide" => "next", :href => "#main-slider"}
     = icon('angle-right')
-%section#boxes.white
+%section#boxes.grey
   .container
     .row
       .col-sm-4
         .row
           .col-md-12
-            .box.orange
-              %h3
-                %span
-                  = icon('newspaper-o icon-sm')
+            .box.orange.text-center
+              .row
+                = icon('newspaper-o icon-sm')
+              .row
+                %h3
                   ÚLTIMAS NOTICIAS
         - @news.each do |news|
           .row
-            .col-sm-12.blog-item
-              - if news.images.empty?
-                = image_tag(('image-not-available.jpg'), class: 'img-responsive img-blog')
-                .blog-content
-                  = link_to (news_path(news)) do
-                    %h4 #{news.title}
-                  %p
-                    #{news.subtitle}
-                  .entry-meta
-                    %span
-                      = icon('folder-close')
-                      %a{:href => "#"} #{news.category}
-                    %span
-                      = icon('calendar')
-                      #{news.date.to_date.to_formatted_s(:long)}
-              - else
-                - news.images.each do |image|
-                  - if image.cover == true
-                    = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+            .col-sm-12.blog
+              .blog-item.white
+                - if news.images.empty?
+                  = link_to(news_path(news)) do
+                    = image_tag(('image-not-available.jpg'), class: 'img-responsive img-blog')
+                    .item-hover
+                      = icon('plus')
                     .blog-content
                       = link_to (news_path(news)) do
-                        %h4 #{truncate(news.title, :length => 50)}
+                        %h4 #{news.title}
                       %p
-                        #{truncate(news.subtitle, :length => 140)}
+                        #{news.subtitle}
                       .entry-meta
-                        %span
-                          = icon('folder-close')
-                          %a{:href => "#"} #{news.category}
                         %span
                           = icon('calendar')
                           #{news.date.to_date.to_formatted_s(:long)}
+                        %span
+                          = icon('folder-close')
+                          %a{:href => "#"} #{news.category}
+                - else
+                  - news.images.each do |image|
+                    - if image.cover == true
+                      = link_to(news_path(news)) do
+                        = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                        .item-hover
+                          = icon('plus')
+                        .blog-content
+                          = link_to (news_path(news)) do
+                            %h4 #{truncate(news.title, :length => 50)}
+                          %p
+                            #{truncate(news.subtitle, :length => 140)}
+                          .entry-meta
+                            %span
+                              = icon('folder-close')
+                              %a{:href => "#"} #{news.category}
+                            %span
+                              = icon('calendar')
+                              #{news.date.to_date.to_formatted_s(:long)}
         .row
           .col-md-12
-            = link_to('Ver todas las Noticias', news_index_path, class: 'col-md-12 btn btn-md btn-success')
+            = link_to('Ver todas las Noticias', news_index_path, class: 'col-md-12 btn btn-lg btn-success')
 
       .col-sm-4
         .row
           .col-md-12
-            .box.turquoise
-              %h3
-                %span
-                  = icon('calendar icon-sm')
-                AGENDA CULTURAL
+            .box.turquoise.text-center
+              .row
+                = icon('calendar icon-sm')
+              .row
+                %h3
+                  AGENDA CULTURAL
         - @events.each do |event|
           .row.events-box
-            .col-sm-12.blog-item
-              - if event.images.empty?
-                .row
-                  .col-sm-6
-                    = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
-                  .col-sm-6
-                    .blog-content
-                      %a{:href => "blog-item.html"}
-                        %h4 #{news.title}
-                      .entry-meta
-                        %span
-                          = icon('calendar')
-                          #{event.date.to_date.to_formatted_s(:long)}
-              - else
-                - event.images.each do |image|
-                  - if image.cover == true
-                    .row
-                      .col-sm-6
+            .col-sm-12
+              .blog-item.white
+                - if event.images.empty?
+                  .row
+                    .col-sm-6
+                      = link_to(event_path(event)) do
                         = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
-                      .col-sm-6
-                        .blog-content
-                          %a{:href => "blog-item.html"}
-                            %h4 #{event.title}
-                          .entry-meta
-                            %span
-                              = icon('calendar')
-                              #{event.date.to_date.to_formatted_s(:long)}
+                        .item-hover
+                          = icon('plus')
+                    .col-sm-6
+                      .blog-content
+                        = link_to(event_path(event)) do
+                          %h4 #{news.title}
+                        .entry-meta
+                          %span
+                            = icon('calendar')
+                            #{event.date.to_date.to_formatted_s(:long)}
+                - else
+                  - event.images.each do |image|
+                    - if image.cover == true
+                      .row
+                        .col-sm-6
+                          = link_to(event_path(event)) do
+                            = image_tag(image.file.url(:large), class: 'img-responsive img-blog')
+                            .item-hover
+                              = icon('plus')
+                        .col-sm-6
+                          .blog-content
+                            = link_to(event_path(event)) do
+                              %h4 #{event.title}
+                            .entry-meta
+                              %span
+                                = icon('calendar')
+                                #{event.date.to_date.to_formatted_s(:long)}
         .row
           .col-md-12
-            = link_to('Ver todos los Eventos', events_path, class: 'col-md-12 btn btn-md btn-success')
+            = link_to('Ver todos los Eventos', events_path, class: 'col-md-12 btn btn-lg btn-success')
        
       .col-sm-4
         .row
           .col-md-12
-            .box.peter-river
-              %h3
-                %span
-                  = icon('newspaper-o icon-sm')
-                MÁS SAN FERNANDO
+            .box.peter-river.text-center
+              .row
+                = icon('plus-square-o icon-sm')
+              .row  
+                %h3
+                  MÁS SAN FERNANDO
         - @banners.each do |banner|
           .row
-            .col-sm-12.blog-item
-              = image_tag(banner.image.url(:large), class: 'img-responsive img-blog')
-              .blog-content
+            .col-sm-12.blog
+              .blog-item.white
                 = link_to(banner.link) do
-                  %h4 #{banner.name}
-                %p
-                  #{banner.description}
+                  = image_tag(banner.image.url(:large), class: 'img-responsive img-blog')
+                  .item-hover
+                    = icon('plus')
+                .blog-content
+                  = link_to(banner.link) do
+                    %h4 #{banner.name}
+                  %p
+                    #{banner.description}
               
 %section#services.orange
   .container
