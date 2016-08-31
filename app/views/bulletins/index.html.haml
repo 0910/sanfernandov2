@@ -1,0 +1,24 @@
+
+%section#title.orange
+  .container
+    .row
+      .col-sm-6
+        %h1 Bulletins
+      .col-sm-6
+        %ul.breadcrumb.pull-right
+          %li
+            = link_to('Inicio', root_path)
+          %li.active Boletines Informativos
+          
+%section#faqs.container
+  %ul.faq.unstyled
+    - @bulletins.each do |bulletin|
+      %li
+        %span.number 
+          PDF
+        %div
+          = link_to(bulletin.file.url) do
+            %h4
+              #{bulletin.name}
+            %p
+              #{bulletin.date}

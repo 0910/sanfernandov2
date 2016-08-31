@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317162407) do
+ActiveRecord::Schema.define(version: 20160831120332) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -76,6 +76,20 @@ ActiveRecord::Schema.define(version: 20160317162407) do
   end
 
   add_index "banners", ["admin_user_id"], name: "index_banners_on_admin_user_id", using: :btree
+
+  create_table "bulletins", force: :cascade do |t|
+    t.date     "date"
+    t.string   "name",              limit: 255
+    t.integer  "admin_user_id",     limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "file_file_name",    limit: 255
+    t.string   "file_content_type", limit: 255
+    t.integer  "file_file_size",    limit: 4
+    t.datetime "file_updated_at"
+  end
+
+  add_index "bulletins", ["admin_user_id"], name: "index_bulletins_on_admin_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -157,6 +171,7 @@ ActiveRecord::Schema.define(version: 20160317162407) do
 
   add_foreign_key "balances", "admin_users"
   add_foreign_key "banners", "admin_users"
+  add_foreign_key "bulletins", "admin_users"
   add_foreign_key "events", "admin_users"
   add_foreign_key "images", "events"
   add_foreign_key "images", "news"

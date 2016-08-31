@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'bulletins/index'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   resources :news, only: [:show, :index]
   resources :events, only: [:show, :index]
   resources :balances, only: [:index]
   resources :pages, only: [:show]
+  resources :bulletins, only [:index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
