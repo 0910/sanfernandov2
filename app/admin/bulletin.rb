@@ -11,9 +11,6 @@ ActiveAdmin.register Bulletin do
     column :date
     column :name
     column :admin_user
-    column 'Status', :sortable => :status do |resource|
-      column_select(resource, :status, ["published", "Pending", "Suspended"])
-    end
     actions
   end
   
