@@ -178,8 +178,6 @@
 										%li 
 											= link_to 'Situación Económico-Financiera', balances_path
 										%li 
-											= link_to 'Boletines Informativos', bulletins_path
-										%li 
 											= link_to 'Ejecución Presupuestaria', page_path(:id => 'ejecucion-presupuestaria')
 										%li 
 											= link_to 'Ingresos Semestrales', page_path(:id => 'ingresos-semestrales')
@@ -223,6 +221,8 @@
 											= link_to 'OMIC', page_path(:id => 'omic')
 										%li 
 											= link_to 'UFRACC', page_path(:id => 'ufracc')
+                %li 
+                  = link_to 'Boletines Informativos', bulletins_path
 						%li.dropdown
 							%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
 								Prensa
@@ -280,6 +280,8 @@
 									%a{:href => "#"} Servicios educativos
 								%li
 									%a{:href => "#"} Atención al vecino
+                %li 
+                  = link_to 'Boletines Informativos', bulletins_path
 
 					.col-md-3.col-sm-6
 						%h4 Conectate
