@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :events, only: [:show, :index]
   resources :balances, only: [:index]
   resources :pages, only: [:show]
-  resources :bulletins, only [:index]
+  resources :bulletins, only: [:index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
